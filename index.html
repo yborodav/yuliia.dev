@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Yuliia, full stack engineer in Vancouver. Web and mobile apps for startups and small teams.">
+<meta property="og:title" content="Yuliia, full stack engineer">
+<meta property="og:description" content="Web and mobile apps for startups and small teams.">
+<meta property="og:image" content="https://yuliia.dev/img/kayak.jpg">
+<meta property="og:url" content="https://yuliia.dev/">
+<link rel="canonical" href="https://yuliia.dev/">
+<title>Yuliia</title>
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..600&family=DM+Mono:wght@300;400&display=swap">
+<style>
+/* Gallery look: lots of white space, light display type, a soft paint wash behind the portrait. One 12-column grid shared by every section, so text edges line up top to bottom.
+   Misty fjord morning: pale lichen-grey ground, deep spruce text, fjord-teal accent. Dusky forest: moss-green ground, lichen-gold accent. Single dark theme by design. */
+:root{
+  --bg:#3a5143; --bg2:#44604f; --fg:#f1f3ec; --soft:#d0d9cb; --mute:#a9baa9; --line:#4d6757; --acc:#e2c47e; --sun:#e8a86a; --head:#f4f2e9; --wash1:#6f9a74; --wash2:#c98a5c; --land:#4e6a5a; --been:#e2c47e;
+  --disp:"Bricolage Grotesque",Helvetica,Arial,sans-serif; --mono:"Bricolage Grotesque",Helvetica,Arial,sans-serif;
+  color-scheme:dark;
+}
+html,body{background:var(--bg)}
+body{color:var(--fg);font:300 17px/1.65 var(--disp);
+  padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1080px;margin:0 auto;padding-block:28px 32px;display:flex;flex-direction:column;gap:80px;overflow-x:clip}
+h1,h2,p,figure{margin:0}
+a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line);transition:color .2s,border-color .2s}
+a:hover{color:var(--acc);border-color:var(--acc)}
+a:focus-visible,button:focus-visible{outline:1.5px solid var(--acc);outline-offset:3px}
+.mono{font-family:var(--mono);font-size:14px;letter-spacing:0;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
+
+nav{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid var(--line)}
+nav .me{font-weight:500;font-size:18px;border:0;display:inline-flex;align-items:center;gap:10px}
+nav .me img{width:30px;height:30px;display:block}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:26px;font-family:var(--mono);font-size:13px}
+nav ul a{border:0;color:var(--mute)}
+nav ul a[aria-current="page"]{color:var(--acc);border-bottom:1.5px solid var(--sun)}
+
+/* home: text cols 1-7, photo cols 8-12, vertically centred */
+.intro{align-items:center;row-gap:32px}
+.intro > div{grid-column:1 / 8;display:flex;flex-direction:column;gap:22px}
+.intro h1{color:var(--head);font-weight:300;font-size:clamp(56px,9vw,104px);line-height:.92;letter-spacing:-.045em;font-variation-settings:"opsz" 96}
+.roles{font-size:clamp(20px,2.2vw,24px);line-height:1.4;color:var(--soft);max-width:28ch;letter-spacing:-.01em}
+.route{display:flex;align-items:center;gap:8px}
+.route{color:var(--soft)}.route::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sun)}
+.portrait{grid-column:8 / 13;position:relative}
+.portrait::before{content:"";position:absolute;inset:-28px -32px -24px -26px;z-index:0;border-radius:46% 54% 42% 58%/55% 45% 55% 45%;background:radial-gradient(circle at 30% 30%,var(--wash1),transparent 65%),radial-gradient(circle at 75% 75%,var(--wash2),transparent 60%);filter:blur(22px);opacity:.75}
+.portrait img{position:relative;z-index:1;display:block;width:100%;max-width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 62%;border-radius:4px}
+
+/* rows: label cols 1-3, content cols 4-10 */
+.rows{display:flex;flex-direction:column}
+.row{padding-block:32px;border-top:1px solid var(--line)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row > .k{grid-column:1 / 4;padding-top:5px;color:var(--acc)}
+.row > div{grid-column:4 / 11;min-width:0;display:flex;flex-direction:column;gap:12px}
+.row p{max-width:56ch}
+.row .lead{font-size:22px;line-height:1.45;letter-spacing:-.01em}
+.row .soft{color:var(--soft)}
+.stack{margin-top:4px}
+.hob{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.hob > div{display:flex;flex-direction:column;gap:8px;min-width:0;background:var(--bg2);border-radius:6px;padding:18px 20px}
+.cta{align-self:flex-start;display:inline-flex;gap:8px;font-size:17px;font-weight:400;color:var(--acc);border-color:color-mix(in srgb,var(--acc) 35%,transparent)}
+
+.mail{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.mail code{font-family:var(--mono);font-size:17px;user-select:all;color:var(--fg)}
+.mail button{font-family:var(--mono);font-size:12px;letter-spacing:.05em;background:none;color:var(--soft);border:1px solid var(--line);border-radius:999px;padding:5px 14px;cursor:pointer}
+.mail button:hover{color:var(--fg);border-color:var(--sun);background:color-mix(in srgb,var(--sun) 25%,transparent)}
+.links{display:flex;gap:22px;flex-wrap:wrap}
+
+/* photography */
+.ph-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.ph-head h2{font-weight:300;font-size:clamp(40px,7vw,72px);letter-spacing:-.04em;line-height:1}
+.gallery{columns:2 300px;column-gap:24px}
+.gallery figure{break-inside:avoid;margin-bottom:28px}
+.gallery img{display:block;width:100%;max-width:100%;height:auto;border-radius:4px}
+.gallery figcaption{margin-top:8px;display:flex;justify-content:space-between;gap:10px}
+
+.map{position:relative;width:100%;max-width:100%;margin-top:6px}
+.map .datamaps-hoverover{position:absolute;pointer-events:none}
+.map svg{display:block}
+.jvm-tooltip{display:none;font-family:var(--mono);font-size:12px;background:var(--fg);color:var(--bg);padding:4px 8px;border-radius:4px;pointer-events:none;z-index:9}
+.jvm-tooltip.active{display:block}
+.jvm-zoom-btn{display:none}
+.countries{display:flex;flex-wrap:wrap;gap:8px}
+.countries span{font-family:var(--disp);font-size:13.5px;color:var(--soft);border:1px solid var(--line);border-radius:999px;padding:3px 11px}
+footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+@media (max-width:760px){
+  .wrap{gap:44px;padding-block:20px 28px}
+  .intro > div,.portrait,.row > .k,.row > div{grid-column:1 / -1}
+  .portrait{max-width:340px}
+  .row{padding-block:24px;row-gap:10px}
+  .row .lead{font-size:20px}
+  .hob{grid-template-columns:1fr;gap:20px}
+}
+@media (prefers-reduced-motion:reduce){a{transition:none}}
+</style>
+</head>
+<body style="margin:0">
+
+
+<div class="wrap">
+  <nav>
+    <a class="me" href="#home"><img src="img/logo.svg" alt="" width="30" height="30">Yuliia</a>
+    <ul>
+      <li><a href="#home" data-view="home">Home</a></li>
+      <li><a href="#photography" data-view="photography">Photos</a></li>
+      <li><a href="#home" data-jump="contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HOME -->
+  <main id="view-home" class="view" style="display:flex;flex-direction:column;gap:64px">
+    <section class="intro grid">
+      <div>
+        <h1>Yuliia</h1>
+        <p class="roles">Full stack engineer. I build web and mobile apps, from the backend to the interface, for startups and small teams.</p>
+        <p class="route mono">Vancouver, BC</p>
+      </div>
+      <figure class="portrait">
+        <img src="img/kayak.jpg" alt="Yuliia in a kayak below a waterfall in a fjord">
+      </figure>
+    </section>
+
+    <div class="rows">
+      <section class="row grid">
+        <span class="k mono">Work</span>
+        <div>
+          <p class="lead">Four years as a full stack engineer. I've also designed and shipped my own iOS apps, from the first sketch to the App Store.</p>
+          <p class="soft">I can help with web and iOS apps, frontends, backends and APIs, login and access control, and AI features.</p>
+          <p class="stack mono">Python · Java · TypeScript · Swift · AWS · Postgres</p>
+        </div>
+      </section>
+
+      <section class="row grid">
+        <span class="k mono">Hobbies</span>
+        <div>
+          <div class="hob">
+            <div><p class="soft">I take photos, paint and travel.</p><a class="cta" href="#photography" data-view="photography">See my photos →</a></div>
+            <div><p class="soft">I'm learning to make music.</p><a class="cta" href="https://on.soundcloud.com/b1PsfPEt3GS3CRB1ic" target="_blank" rel="noopener">Check my progress ↗</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="row grid" id="travel">
+        <span class="k mono">Travel</span>
+        <div>
+          <p class="soft">Places I've been so far: <span id="count"></span> countries.</p>
+          <div id="map" class="map" role="img" aria-label="World map with visited countries highlighted"></div>
+          <div class="countries" id="countryList"></div>
+        </div>
+      </section>
+
+      <section class="row grid" id="contact">
+        <span class="k mono">Contact</span>
+        <div>
+          <p class="soft">Tell me what you're building.</p>
+          <div class="mail"><code id="email">juliaborodavka@gmail.com</code><button id="copy" type="button">copy</button></div>
+          <div class="links mono"><a href="https://github.com/yborodav" target="_blank" rel="noopener">GitHub ↗</a><a href="https://ca.linkedin.com/in/yuliia-borodavka" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- PHOTOGRAPHY -->
+  <main id="view-photography" class="view" hidden style="flex-direction:column;gap:40px">
+    <div class="ph-head">
+      <h2>Some recent pics</h2>
+      <a class="mono" href="#home" data-view="home">← Back</a>
+    </div>
+    <div class="gallery">
+      <figure><img src="img/street.jpg" alt="Sunlit old town street under storm clouds" loading="lazy"></figure>
+      <figure><img src="img/wedding.jpg" alt="Beach wedding dinner under string lights" loading="lazy"></figure>
+      <figure><img src="img/shallows.jpg" alt="Shallow water over sand" loading="lazy"></figure>
+      <figure><img src="img/rain.jpg" alt="Rainy street under hanging lights" loading="lazy"></figure>
+      <figure><img src="img/trail.jpg" alt="Hiker on a forest trail" loading="lazy"></figure>
+      <figure><img src="img/snow.jpg" alt="Mountains with first snow" loading="lazy"></figure>
+      <figure><img src="img/highland.jpg" alt="Highland cattle grazing in fog" loading="lazy"></figure>
+    </div>
+  </main>
+
+  <footer class="mono"><span>© 2026 Yuliia</span><span>Vancouver, BC</span></footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.20/topojson.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datamaps/0.5.9/datamaps.world.min.js"></script>
+<script>
+// Edit this list: ISO country code -> name
+const VISITED={UKR:"Ukraine",USA:"United States",CAN:"Canada",GBR:"UK",IRL:"Ireland",FRA:"France",ESP:"Spain",PRT:"Portugal",ITA:"Italy",DEU:"Germany",NLD:"Netherlands",BEL:"Belgium",AUT:"Austria",CZE:"Czechia",POL:"Poland",HUN:"Hungary",HRV:"Croatia",GRC:"Greece",NOR:"Norway",FRO:"Faroe Islands",BGR:"Bulgaria",TUR:"Turkey",GEO:"Georgia",SVK:"Slovakia",MEX:"Mexico",BHS:"Bahamas",PRI:"Puerto Rico",MYS:"Malaysia",ARE:"UAE",MDV:"Maldives",EGY:"Egypt",TZA:"Tanzania"};
+document.getElementById('count').textContent=Object.keys(VISITED).length;
+document.getElementById('countryList').innerHTML=Object.values(VISITED).map(n=>`<span>${n}</span>`).join('');
+let travelMap=null;
+function drawMap(){
+  if(travelMap||!window.Datamap)return;
+  const el=document.getElementById('map');
+  if(!el.offsetWidth)return;
+  const css=getComputedStyle(document.documentElement);
+  const data={};Object.keys(VISITED).forEach(k=>data[k]={fillKey:'been'});
+  try{
+    travelMap=new Datamap({element:el,scope:'world',responsive:true,projection:'mercator',
+      height:el.offsetWidth*0.62,width:el.offsetWidth,
+      fills:{defaultFill:css.getPropertyValue('--land').trim(),been:css.getPropertyValue('--been').trim()},
+      data:data,
+      geographyConfig:{borderColor:css.getPropertyValue('--bg').trim(),borderWidth:.6,highlightOnHover:false,
+        popupTemplate:(g)=>'<div class="jvm-tooltip active">'+g.properties.name+'</div>'}
+    });
+    window.addEventListener('resize',()=>travelMap&&travelMap.resize());
+  }catch(e){el.hidden=true}
+}
+const views={home:document.getElementById('view-home'),photography:document.getElementById('view-photography')};
+const navLinks=document.querySelectorAll('nav ul a[data-view]');
+function show(){
+  const v=location.hash==='#photography'?'photography':'home';
+  for(const k in views){views[k].hidden=k!==v;if(k===v)views[k].style.display='flex';}
+  navLinks.forEach(a=>{if(a.dataset.view===v)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+}
+window.addEventListener('hashchange',()=>{show();window.scrollTo(0,0);if(location.hash!=='#photography')drawMap()});
+show();drawMap();
+document.querySelector('[data-jump="contact"]').addEventListener('click',e=>{
+  e.preventDefault();
+  if(location.hash==='#photography'){location.hash='home'}
+  setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),30);
+});
+const b=document.getElementById('copy');
+b.addEventListener('click',()=>{const el=document.getElementById('email');
+  const ok=()=>{b.textContent='copied';setTimeout(()=>b.textContent='copy',1500)};
+  const sel=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)};
+  navigator.clipboard?navigator.clipboard.writeText(el.textContent).then(ok).catch(sel):sel();});
+</script>
+
+</body>
+</html>
