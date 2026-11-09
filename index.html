@@ -62,6 +62,14 @@ nav ul a[aria-current="page"]{color:var(--acc);border-bottom:1.5px solid var(--s
 .row .lead{font-size:22px;line-height:1.45;letter-spacing:-.01em}
 .row .soft{color:var(--soft)}
 .stack{margin-top:4px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:10px}
+.stats div{display:flex;flex-direction:column;gap:4px;min-width:0;border-top:1px solid var(--line);padding-top:12px}
+.stats b{font-weight:300;font-size:clamp(30px,3.6vw,40px);line-height:1;letter-spacing:-.03em;color:var(--acc);font-variant-numeric:tabular-nums}
+.stats span{font-size:13.5px;line-height:1.35;color:var(--mute)}
+.hl{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.hl li{position:relative;padding-left:18px;color:var(--soft);max-width:56ch}
+.hl li::before{content:"";position:absolute;left:0;top:.72em;width:7px;height:1.5px;background:var(--acc)}
+@media (max-width:760px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .hob{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .hob > div{display:flex;flex-direction:column;gap:8px;min-width:0;background:var(--bg2);border-radius:6px;padding:18px 20px}
 .cta{align-self:flex-start;display:inline-flex;gap:8px;font-size:17px;font-weight:400;color:var(--acc);border-color:color-mix(in srgb,var(--acc) 35%,transparent)}
@@ -131,9 +139,20 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
       <section class="row grid">
         <span class="k mono">Work</span>
         <div>
-          <p class="lead">Four years as a full stack engineer. I've also designed and shipped my own iOS apps, from the first sketch to the App Store.</p>
+          <p class="lead">Four years building production systems that need to stay up and stay secure. Right now I'm also building my own iOS apps.</p>
           <p class="soft">I can help with web and iOS apps, frontends, backends and APIs, login and access control, and AI features.</p>
-          <p class="stack mono">Python · Java · TypeScript · Swift · AWS · Postgres</p>
+          <div class="stats">
+            <div><b>4+</b><span>years in production engineering</span></div>
+            <div><b>35k+</b><span>services reached by auth I built</span></div>
+            <div><b>19k</b><span>requests per second kept at 100% uptime through peak</span></div>
+            <div><b>9</b><span>regions in a rollout I led</span></div>
+          </div>
+          <ul class="hl">
+            <li>Built credential-free sign-in for AI agents, so they can call protected APIs without stored secrets.</li>
+            <li>Led capacity planning for 20 services through the biggest sales events of the year, with zero downtime.</li>
+            <li>Built a profiling tool that found the cause of a production CPU spike nobody had explained for 5 months.</li>
+          </ul>
+          <p class="stack mono">Python · Java · Kotlin · TypeScript · Swift · AWS</p>
         </div>
       </section>
 
