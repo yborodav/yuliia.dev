@@ -97,6 +97,11 @@ nav ul a[aria-current="page"]{color:var(--acc);border-bottom:1.5px solid var(--s
 .jrow{display:flex;gap:12px}
 .jrow figure{margin:0;flex:var(--ar) 1 0%;min-width:0}
 .jrow img{display:block;width:100%;height:auto;aspect-ratio:var(--ar);border-radius:4px}
+@media (hover:hover){
+  .jrow img{transition:opacity .35s ease,filter .35s ease}
+  .gal:has(figure:hover) figure:not(:hover) img{opacity:.4;filter:saturate(.6)}
+}
+@media (prefers-reduced-motion:reduce){.jrow img{transition:none}}
 @media (max-width:600px){.jrow{flex-direction:column}.jrow figure{flex:none}}
 .gallery figcaption{margin-top:8px;display:flex;justify-content:space-between;gap:10px}
 
