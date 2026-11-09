@@ -87,9 +87,12 @@ nav ul a[aria-current="page"]{color:var(--acc);border-bottom:1.5px solid var(--s
 /* photography */
 .ph-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
 .ph-head h2{font-weight:300;font-size:clamp(40px,7vw,72px);letter-spacing:-.04em;line-height:1}
-.gallery{columns:2 300px;column-gap:24px}
-.gallery figure{break-inside:avoid;margin-bottom:28px}
-.gallery img{display:block;width:100%;max-width:100%;height:auto;border-radius:4px}
+.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.gallery figure{margin:0;min-width:0}
+.gallery img{display:block;width:100%;max-width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px}
+.gallery .wide{grid-column:1/-1}
+.gallery .wide img{aspect-ratio:16/9}
+@media (max-width:760px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
 .gallery figcaption{margin-top:8px;display:flex;justify-content:space-between;gap:10px}
 
 .map{position:relative;width:100%;max-width:100%;margin-top:6px}
@@ -206,10 +209,10 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
       <figure><img src="img/street.jpg" alt="Sunlit old town street under storm clouds" loading="lazy"></figure>
       <figure><img src="img/wedding.jpg" alt="Beach wedding dinner under string lights" loading="lazy"></figure>
       <figure><img src="img/shallows.jpg" alt="Shallow water over sand" loading="lazy"></figure>
-      <figure><img src="img/rain.jpg" alt="Rainy street under hanging lights" loading="lazy"></figure>
       <figure><img src="img/trail.jpg" alt="Hiker on a forest trail" loading="lazy"></figure>
       <figure><img src="img/snow.jpg" alt="Mountains with first snow" loading="lazy"></figure>
       <figure><img src="img/highland.jpg" alt="Highland cattle grazing in fog" loading="lazy"></figure>
+      <figure class="wide"><img src="img/rain.jpg" alt="Rainy street under hanging lights" loading="lazy"></figure>
     </div>
   </main>
 
