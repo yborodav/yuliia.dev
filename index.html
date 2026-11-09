@@ -116,6 +116,8 @@ nav ul a[aria-current="page"]{color:var(--acc);border-bottom:1.5px solid var(--s
 #cf-status.ok{color:var(--acc)}#cf-status.err{color:var(--sun)}
 @media (max-width:760px){.f2{grid-template-columns:1fr}}
 .pname{font-weight:500;color:var(--fg)}
+.plogo{width:52px;height:52px;display:block;border-radius:12px}
+.plogo-sm{width:22px;height:22px;vertical-align:-5px;margin-right:8px;border-radius:5px}
 .proj{display:flex;flex-direction:column;gap:16px;max-width:680px;background:var(--bg2);border-radius:8px;padding:28px}
 .proj-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .proj h3{margin:0;font-weight:400;font-size:clamp(28px,4vw,36px);letter-spacing:-.03em}
@@ -195,7 +197,7 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
       <section class="row grid">
         <span class="k mono">Projects</span>
         <div>
-          <p class="soft"><b class="pname">RetreatDesk</b> lets retreat venues take bookings directly, without paying commission. Now in beta.</p>
+          <p class="soft"><img class="plogo-sm" src="img/retreatdesk.svg" alt="" width="22" height="22"><b class="pname">RetreatDesk</b> lets retreat venues take bookings directly, without paying commission. Now in beta.</p>
           <a class="cta" href="#projects" data-view="projects">See projects →</a>
         </div>
       </section>
@@ -238,6 +240,7 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
     </div>
     <article class="proj">
       <div class="proj-top">
+        <img class="plogo" src="img/retreatdesk.svg" alt="RetreatDesk logo" width="52" height="52">
         <h3>RetreatDesk</h3>
         <span class="pill">Beta</span>
       </div>
