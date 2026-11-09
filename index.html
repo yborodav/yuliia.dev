@@ -360,7 +360,7 @@ function drawMap(){
   const c=document.getElementById('trail');
   if(!c||!matchMedia('(hover: hover)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   const ctx=c.getContext('2d');
-  const col=getComputedStyle(document.documentElement).getPropertyValue('--sun').trim()||'#e8a86a';
+  const col='#d8f1ea';
   let dpr=1,px=null,py=null,tx=0,ty=0,idle=0,run=false;
   function size(){dpr=Math.min(devicePixelRatio||1,2);c.width=innerWidth*dpr;c.height=innerHeight*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
   size();addEventListener('resize',size);
@@ -369,15 +369,15 @@ function drawMap(){
   const d=dab.getContext('2d'),gr=d.createRadialGradient(R,R,0,R,R,R);
   gr.addColorStop(0,col);gr.addColorStop(1,'transparent');d.fillStyle=gr;d.fillRect(0,0,R*2,R*2);
   function frame(){
-    ctx.globalCompositeOperation='destination-out';ctx.globalAlpha=.07;ctx.fillRect(0,0,innerWidth,innerHeight);
+    ctx.globalCompositeOperation='destination-out';ctx.globalAlpha=.22;ctx.fillRect(0,0,innerWidth,innerHeight);
     ctx.globalCompositeOperation='source-over';
     if(px===null){px=tx;py=ty}
-    const nx=px+(tx-px)*.35,ny=py+(ty-py)*.35,dist=Math.hypot(nx-px,ny-py),n=Math.max(1,Math.ceil(dist/3));
-    ctx.globalAlpha=.035;
+    const nx=px+(tx-px)*.22,ny=py+(ty-py)*.22,dist=Math.hypot(nx-px,ny-py),n=Math.max(1,Math.ceil(dist/3));
+    ctx.globalAlpha=.05;
     for(let i=1;i<=n;i++){const x=px+(nx-px)*i/n,y=py+(ny-py)*i/n;ctx.drawImage(dab,x-R,y-R)}
     px=nx;py=ny;
     if(dist<.3)idle++;else idle=0;
-    if(idle<90)requestAnimationFrame(frame);else{run=false;ctx.clearRect(0,0,innerWidth,innerHeight)}
+    if(idle<40)requestAnimationFrame(frame);else{run=false;ctx.clearRect(0,0,innerWidth,innerHeight)}
   }
   addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;idle=0;if(!run){run=true;requestAnimationFrame(frame)}},{passive:true});
 })();
