@@ -135,6 +135,8 @@ nav ul a[aria-current="page"]{color:var(--acc);border-bottom:1.5px solid var(--s
 .soon-row div{display:flex;flex-direction:column;gap:2px;min-width:0}
 .soon-row b{font-weight:500}
 .soon-row div span{color:var(--soft);font-size:15px}
+.tag.live{color:var(--bg);background:var(--acc);border-color:var(--acc);font-weight:500}
+.tag.live:hover{color:var(--bg);filter:brightness(1.08)}
 .tag{font-size:12.5px;color:var(--mute);border:1px solid var(--line);border-radius:999px;padding:3px 10px;white-space:nowrap}
 @media (max-width:520px){.soon-row{grid-template-columns:40px minmax(0,1fr)}.soon-row .tag{grid-column:2;justify-self:start}}
 footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
@@ -248,26 +250,12 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
       <h2>Personal projects</h2>
       <a class="mono" href="#home" data-view="home">← Back</a>
     </div>
-    <article class="proj">
-      <div class="proj-top">
-        <img class="plogo" src="img/retreatdesk.svg" alt="RetreatDesk logo" width="52" height="52">
-        <h3>RetreatDesk</h3>
-        <span class="pill">Beta</span>
-      </div>
-      <p class="lead">Direct booking for boutique retreat venues, with no commission.</p>
-      <ul class="hl">
-        <li>Quote requests organizers can accept, adjust or decline</li>
-        <li>Agreements generated from the venue's own rules</li>
-        <li>Deposits paid straight to the venue</li>
-        <li>Two-way calendar sync with Airbnb and VRBO</li>
-      </ul>
-      <div class="proj-links">
-        <a class="btn" href="https://retreatdesk.app/signup" target="_blank" rel="noopener">Join the beta ↗</a>
-        <a class="cta" href="https://retreatdesk.app" target="_blank" rel="noopener">Visit retreatdesk.app ↗</a>
-      </div>
-    </article>
     <section class="soon">
-      <h3 class="k mono">In progress</h3>
+      <div class="soon-row">
+        <img src="img/retreatdesk.svg" alt="" width="40" height="40">
+        <div><b>RetreatDesk</b><span>Direct booking for boutique retreat venues, with no commission. <a href="https://retreatdesk.app" target="_blank" rel="noopener">retreatdesk.app ↗</a></span></div>
+        <a class="tag live" href="https://retreatdesk.app/signup" target="_blank" rel="noopener">Beta · join ↗</a>
+      </div>
       <div class="soon-row">
         <img src="img/pettrack.svg" alt="" width="40" height="40">
         <div><b>PetTrack</b><span>Health tracker for pets with chronic conditions: meds and lab results over time.</span></div>
