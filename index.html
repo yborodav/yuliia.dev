@@ -127,6 +127,16 @@ nav ul a[aria-current="page"]{color:var(--acc);border-bottom:1.5px solid var(--s
 .btn{font-size:16px;font-weight:500;color:var(--bg);background:var(--acc);border:0;border-radius:999px;padding:11px 22px}
 .btn:hover{color:var(--bg);filter:brightness(1.08)}
 @media (max-width:760px){.proj{padding:20px}}
+.soon{display:flex;flex-direction:column;max-width:680px}
+.soon h3{margin:0 0 6px;font-weight:400;color:var(--acc)}
+.soon-row{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:16px;align-items:center;padding-block:14px;border-top:1px solid var(--line)}
+.soon-row:last-child{border-bottom:1px solid var(--line)}
+.soon-row img{width:40px;height:40px;border-radius:9px;display:block}
+.soon-row div{display:flex;flex-direction:column;gap:2px;min-width:0}
+.soon-row b{font-weight:500}
+.soon-row div span{color:var(--soft);font-size:15px}
+.tag{font-size:12.5px;color:var(--mute);border:1px solid var(--line);border-radius:999px;padding:3px 10px;white-space:nowrap}
+@media (max-width:520px){.soon-row{grid-template-columns:40px minmax(0,1fr)}.soon-row .tag{grid-column:2;justify-self:start}}
 footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 
 @media (max-width:760px){
@@ -256,6 +266,19 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
         <a class="cta" href="https://retreatdesk.app" target="_blank" rel="noopener">Visit retreatdesk.app ↗</a>
       </div>
     </article>
+    <section class="soon">
+      <h3 class="k mono">In progress</h3>
+      <div class="soon-row">
+        <img src="img/pettrack.svg" alt="" width="40" height="40">
+        <div><b>PetTrack</b><span>Health tracker for pets with chronic conditions: meds and lab results over time.</span></div>
+        <span class="tag">Coming 2027</span>
+      </div>
+      <div class="soon-row">
+        <img src="img/divelog.svg" alt="" width="40" height="40">
+        <div><b>DiveLog</b><span>Logbook for scuba divers: licenses, dive sites and creatures seen.</span></div>
+        <span class="tag">Coming 2027</span>
+      </div>
+    </section>
   </main>
 
   <!-- CONTACT -->
