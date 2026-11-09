@@ -115,6 +115,16 @@ nav ul a[aria-current="page"]{color:var(--acc);border-bottom:1.5px solid var(--s
 #cf-send:hover{filter:brightness(1.08)}#cf-send:disabled{opacity:.6;cursor:default}
 #cf-status.ok{color:var(--acc)}#cf-status.err{color:var(--sun)}
 @media (max-width:760px){.f2{grid-template-columns:1fr}}
+.pname{font-weight:500;color:var(--fg)}
+.proj{display:flex;flex-direction:column;gap:16px;max-width:680px;background:var(--bg2);border-radius:8px;padding:28px}
+.proj-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.proj h3{margin:0;font-weight:400;font-size:clamp(28px,4vw,36px);letter-spacing:-.03em}
+.pill{font-size:12.5px;font-weight:500;color:var(--bg);background:var(--acc);border-radius:999px;padding:3px 11px}
+.proj .lead{font-size:20px;line-height:1.4;color:var(--fg)}
+.proj-links{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:6px}
+.btn{font-size:16px;font-weight:500;color:var(--bg);background:var(--acc);border:0;border-radius:999px;padding:11px 22px}
+.btn:hover{color:var(--bg);filter:brightness(1.08)}
+@media (max-width:760px){.proj{padding:20px}}
 footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 
 @media (max-width:760px){
@@ -136,6 +146,7 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
     <a class="me" href="#home"><img src="img/logo.svg" alt="" width="30" height="30">Yuliia</a>
     <ul>
       <li><a href="#home" data-view="home">Home</a></li>
+      <li><a href="#projects" data-view="projects">Projects</a></li>
       <li><a href="#photography" data-view="photography">Photos</a></li>
       <li><a href="#contact" data-view="contact">Contact</a></li>
     </ul>
@@ -182,6 +193,14 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
       </section>
 
       <section class="row grid">
+        <span class="k mono">Projects</span>
+        <div>
+          <p class="soft"><b class="pname">RetreatDesk</b> lets retreat venues take bookings directly, without paying commission. Now in beta.</p>
+          <a class="cta" href="#projects" data-view="projects">See projects →</a>
+        </div>
+      </section>
+
+      <section class="row grid">
         <span class="k mono">Hobbies</span>
         <div>
           <div class="hob">
@@ -209,6 +228,31 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
         </div>
       </section>
     </div>
+  </main>
+
+  <!-- PROJECTS -->
+  <main id="view-projects" class="view" hidden style="flex-direction:column;gap:32px">
+    <div class="ph-head">
+      <h2>Projects</h2>
+      <a class="mono" href="#home" data-view="home">← Back</a>
+    </div>
+    <article class="proj">
+      <div class="proj-top">
+        <h3>RetreatDesk</h3>
+        <span class="pill">Beta</span>
+      </div>
+      <p class="lead">Direct booking for boutique retreat venues, with no commission.</p>
+      <ul class="hl">
+        <li>Quote requests organizers can accept, adjust or decline</li>
+        <li>Agreements generated from the venue's own rules</li>
+        <li>Deposits paid straight to the venue</li>
+        <li>Two-way calendar sync with Airbnb and VRBO</li>
+      </ul>
+      <div class="proj-links">
+        <a class="btn" href="https://retreatdesk.app/signup" target="_blank" rel="noopener">Join the beta ↗</a>
+        <a class="cta" href="https://retreatdesk.app" target="_blank" rel="noopener">Visit retreatdesk.app ↗</a>
+      </div>
+    </article>
   </main>
 
   <!-- CONTACT -->
@@ -279,14 +323,14 @@ function drawMap(){
     window.addEventListener('resize',()=>travelMap&&travelMap.resize());
   }catch(e){el.hidden=true}
 }
-const views={home:document.getElementById('view-home'),photography:document.getElementById('view-photography'),contact:document.getElementById('view-contact')};
+const views={home:document.getElementById('view-home'),photography:document.getElementById('view-photography'),contact:document.getElementById('view-contact'),projects:document.getElementById('view-projects')};
 const navLinks=document.querySelectorAll('nav ul a[data-view]');
 function show(){
-  const v={'#photography':'photography','#contact':'contact'}[location.hash]||'home';
+  const v={'#photography':'photography','#contact':'contact','#projects':'projects'}[location.hash]||'home';
   for(const k in views){views[k].hidden=k!==v;views[k].style.display=k===v?'flex':'none';}
   navLinks.forEach(a=>{if(a.dataset.view===v)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
 }
-window.addEventListener('hashchange',()=>{show();window.scrollTo(0,0);if(!['#photography','#contact'].includes(location.hash))drawMap()});
+window.addEventListener('hashchange',()=>{show();window.scrollTo(0,0);if(!['#photography','#contact','#projects'].includes(location.hash))drawMap()});
 show();drawMap();
 // Contact form: sends through Web3Forms to the email tied to this key
 const W3F_KEY='13aeec21-9b7e-4d65-a796-48d6f2b5e2a4';
