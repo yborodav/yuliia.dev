@@ -31,6 +31,7 @@ h1,h2,p,figure{margin:0}
 a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line);transition:color .2s,border-color .2s}
 a:hover{color:var(--acc);border-color:var(--acc)}
 a:focus-visible,button:focus-visible{outline:1.5px solid var(--acc);outline-offset:3px}
+[hidden]{display:none!important}
 .mono{font-family:var(--mono);font-size:14px;letter-spacing:0;color:var(--mute)}
 .grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
 
@@ -245,7 +246,7 @@ const views={home:document.getElementById('view-home'),photography:document.getE
 const navLinks=document.querySelectorAll('nav ul a[data-view]');
 function show(){
   const v=location.hash==='#photography'?'photography':'home';
-  for(const k in views){views[k].hidden=k!==v;if(k===v)views[k].style.display='flex';}
+  for(const k in views){views[k].hidden=k!==v;views[k].style.display=k===v?'flex':'none';}
   navLinks.forEach(a=>{if(a.dataset.view===v)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
 }
 window.addEventListener('hashchange',()=>{show();window.scrollTo(0,0);if(location.hash!=='#photography')drawMap()});
