@@ -103,6 +103,18 @@ nav ul a[aria-current="page"]{color:var(--acc);border-bottom:1.5px solid var(--s
 .jvm-zoom-btn{display:none}
 .countries{display:flex;flex-wrap:wrap;gap:8px}
 .countries span{font-family:var(--disp);font-size:13.5px;color:var(--soft);border:1px solid var(--line);border-radius:999px;padding:3px 11px}
+.cform{display:flex;flex-direction:column;gap:18px;max-width:640px}
+.f2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.cform label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--mute)}
+.cform input,.cform textarea{font:inherit;font-size:16px;color:var(--fg);background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:12px 14px;resize:vertical}
+.cform input:focus,.cform textarea:focus{outline:none;border-color:var(--acc)}
+.cform textarea::placeholder{color:var(--mute)}
+.cform .bot{display:none}
+.factions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+#cf-send{font:inherit;font-size:16px;font-weight:500;color:var(--bg);background:var(--acc);border:0;border-radius:999px;padding:12px 26px;cursor:pointer}
+#cf-send:hover{filter:brightness(1.08)}#cf-send:disabled{opacity:.6;cursor:default}
+#cf-status.ok{color:var(--acc)}#cf-status.err{color:var(--sun)}
+@media (max-width:760px){.f2{grid-template-columns:1fr}}
 footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 
 @media (max-width:760px){
@@ -125,7 +137,7 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
     <ul>
       <li><a href="#home" data-view="home">Home</a></li>
       <li><a href="#photography" data-view="photography">Photos</a></li>
-      <li><a href="#home" data-jump="contact">Contact</a></li>
+      <li><a href="#contact" data-view="contact">Contact</a></li>
     </ul>
   </nav>
 
@@ -188,15 +200,37 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
         </div>
       </section>
 
-      <section class="row grid" id="contact">
+      <section class="row grid" id="contact-row">
         <span class="k mono">Contact</span>
         <div>
           <p class="soft">Tell me what you want to build.</p>
-          <div class="mail"><code id="email">hi@yuliia.dev</code><button id="copy" type="button">copy</button></div>
+          <a class="cta" href="#contact" data-view="contact">Send me a message →</a>
           <div class="links mono"><a href="https://github.com/yborodav" target="_blank" rel="noopener">GitHub ↗</a><a href="https://ca.linkedin.com/in/yuliia-borodavka" target="_blank" rel="noopener">LinkedIn ↗</a></div>
         </div>
       </section>
     </div>
+  </main>
+
+  <!-- CONTACT -->
+  <main id="view-contact" class="view" hidden style="flex-direction:column;gap:32px">
+    <div class="ph-head">
+      <h2>Contact</h2>
+      <a class="mono" href="#home" data-view="home">← Back</a>
+    </div>
+    <p class="soft" style="max-width:46ch">Tell me what you want to build. I'll reply within a day or two.</p>
+    <form id="cform" class="cform" novalidate>
+      <div class="f2">
+        <label for="cf-name">Name<input id="cf-name" name="name" type="text" autocomplete="name" required></label>
+        <label for="cf-email">Email<input id="cf-email" name="email" type="email" autocomplete="email" required></label>
+      </div>
+      <label for="cf-msg">Message<textarea id="cf-msg" name="message" rows="7" required placeholder="A bit about your project, timeline and budget"></textarea></label>
+      <input id="cf-bot" type="checkbox" name="botcheck" class="bot" tabindex="-1" autocomplete="off">
+      <div class="factions">
+        <button id="cf-send" type="submit">Send message</button>
+        <span id="cf-status" class="mono" role="status" aria-live="polite"></span>
+      </div>
+    </form>
+    <p class="mono">Or email me directly at hi@yuliia.dev</p>
   </main>
 
   <!-- PHOTOGRAPHY -->
@@ -245,22 +279,37 @@ function drawMap(){
     window.addEventListener('resize',()=>travelMap&&travelMap.resize());
   }catch(e){el.hidden=true}
 }
-const views={home:document.getElementById('view-home'),photography:document.getElementById('view-photography')};
+const views={home:document.getElementById('view-home'),photography:document.getElementById('view-photography'),contact:document.getElementById('view-contact')};
 const navLinks=document.querySelectorAll('nav ul a[data-view]');
 function show(){
-  const v=location.hash==='#photography'?'photography':'home';
+  const v={'#photography':'photography','#contact':'contact'}[location.hash]||'home';
   for(const k in views){views[k].hidden=k!==v;views[k].style.display=k===v?'flex':'none';}
   navLinks.forEach(a=>{if(a.dataset.view===v)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
 }
-window.addEventListener('hashchange',()=>{show();window.scrollTo(0,0);if(location.hash!=='#photography')drawMap()});
+window.addEventListener('hashchange',()=>{show();window.scrollTo(0,0);if(!['#photography','#contact'].includes(location.hash))drawMap()});
 show();drawMap();
-document.querySelector('[data-jump="contact"]').addEventListener('click',e=>{
+// Contact form: sends through Web3Forms to the email tied to this key
+const W3F_KEY='YOUR_WEB3FORMS_KEY';
+const form=document.getElementById('cform'),st=document.getElementById('cf-status'),send=document.getElementById('cf-send');
+form.addEventListener('submit',async e=>{
   e.preventDefault();
-  if(location.hash==='#photography'){location.hash='home'}
-  setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),30);
+  st.className='mono';
+  if(!form.checkValidity()){st.textContent='Please fill in your name, a valid email and a message.';st.classList.add('err');return}
+  if(document.getElementById('cf-bot').checked)return;
+  if(W3F_KEY.startsWith('YOUR_')){st.textContent='The form isn\'t connected yet. Please email hi@yuliia.dev.';st.classList.add('err');return}
+  send.disabled=true;st.textContent='Sending…';
+  try{
+    const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+      body:JSON.stringify({access_key:W3F_KEY,subject:'New message from yuliia.dev',from_name:'yuliia.dev',
+        name:document.getElementById('cf-name').value,email:document.getElementById('cf-email').value,message:document.getElementById('cf-msg').value,replyto:document.getElementById('cf-email').value})});
+    const j=await r.json();
+    if(j.success){form.reset();st.textContent='Sent. Thanks, I\'ll get back to you soon.';st.classList.add('ok')}
+    else throw new Error(j.message||'failed');
+  }catch(err){st.textContent='Couldn\'t send. Please email hi@yuliia.dev instead.';st.classList.add('err')}
+  finally{send.disabled=false}
 });
 const b=document.getElementById('copy');
-b.addEventListener('click',()=>{const el=document.getElementById('email');
+if(b)b.addEventListener('click',()=>{const el=document.getElementById('email');
   const ok=()=>{b.textContent='copied';setTimeout(()=>b.textContent='copy',1500)};
   const sel=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)};
   navigator.clipboard?navigator.clipboard.writeText(el.textContent).then(ok).catch(sel):sel();});
