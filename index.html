@@ -139,6 +139,9 @@ nav ul a[aria-current="page"]{color:var(--acc);border-bottom:1.5px solid var(--s
 .btn{font-size:16px;font-weight:500;color:var(--bg);background:var(--acc);border:0;border-radius:999px;padding:11px 22px}
 .btn:hover{color:var(--bg);filter:brightness(1.08)}
 @media (max-width:760px){.proj{padding:20px}}
+.e2e{display:flex;flex-direction:column;gap:12px;max-width:680px}
+.roles-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.roles-list li{font-size:14px;color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:4px 12px}
 .soon{display:flex;flex-direction:column;max-width:680px}
 .soon h3{margin:0 0 6px;font-weight:400;color:var(--acc)}
 .soon-row{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:16px;align-items:center;padding-block:14px;border-top:1px solid var(--line)}
@@ -262,6 +265,12 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
     <div class="ph-head">
       <h2>Personal projects</h2>
       <a class="mono" href="#home" data-view="home">← Back</a>
+    </div>
+    <div class="e2e">
+      <p class="soft">I build each of these end to end, on my own:</p>
+      <ul class="roles-list">
+        <li>Product and design</li><li>Logo and branding</li><li>Frontend</li><li>Backend and APIs</li><li>Cloud infrastructure</li><li>Launch</li>
+      </ul>
     </div>
     <section class="soon">
       <div class="soon-row">
