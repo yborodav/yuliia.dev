@@ -27,9 +27,9 @@ html,body{background:var(--bg)}
 body{color:var(--fg);font:300 17px/1.65 var(--disp);
   padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding-block:28px 32px;display:flex;flex-direction:column;gap:80px;overflow-x:clip}
-.glow{position:fixed;left:0;top:0;width:620px;height:620px;margin:-310px 0 0 -310px;border-radius:50%;pointer-events:none;z-index:0;
-  background:radial-gradient(circle,color-mix(in srgb,var(--sun) 26%,transparent) 0%,color-mix(in srgb,var(--sun) 8%,transparent) 40%,transparent 68%);
-  filter:blur(24px);opacity:0;transition:opacity .8s ease;will-change:transform}
+.glow{position:fixed;left:0;top:0;width:360px;height:360px;margin:-180px 0 0 -180px;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,color-mix(in srgb,var(--sun) 14%,transparent) 0%,color-mix(in srgb,var(--sun) 4%,transparent) 40%,transparent 68%);
+  filter:blur(18px);opacity:0;transition:opacity .8s ease;will-change:transform}
 .glow.on{opacity:1}
 @media (hover:none),(prefers-reduced-motion:reduce){.glow{display:none}}
 h1,h2,p,figure{margin:0}
@@ -363,7 +363,7 @@ function drawMap(){
   const g=document.getElementById('glow');
   if(!g||!matchMedia('(hover: hover)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   let tx=innerWidth/2,ty=innerHeight/2,x=tx,y=ty,run=false;
-  function step(){x+=(tx-x)*.08;y+=(ty-y)*.08;g.style.transform=`translate3d(${x}px,${y}px,0)`;
+  function step(){x+=(tx-x)*.03;y+=(ty-y)*.03;g.style.transform=`translate3d(${x}px,${y}px,0)`;
     if(Math.abs(tx-x)+Math.abs(ty-y)>.5)requestAnimationFrame(step);else run=false}
   addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;g.classList.add('on');if(!run){run=true;requestAnimationFrame(step)}},{passive:true});
   document.addEventListener('pointerleave',()=>g.classList.remove('on'));
