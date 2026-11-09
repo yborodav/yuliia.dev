@@ -93,12 +93,14 @@ nav ul a[aria-current="page"]{color:var(--acc);border-bottom:1.5px solid var(--s
 /* photography */
 .ph-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
 .ph-head h2{font-weight:300;font-size:clamp(40px,7vw,72px);letter-spacing:-.04em;line-height:1}
+.gal{display:flex;flex-direction:column;gap:16px}
+.gal-h{margin:28px 0 0;font-weight:400;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--acc)}
+.gal-h:first-child{margin-top:0}
 .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.gallery figure{margin:0;min-width:0}
-.gallery img{display:block;width:100%;max-width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px}
-.gallery .wide{grid-column:1/-1}
-.gallery .wide img{aspect-ratio:16/9}
-@media (max-width:760px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+.gallery figure,.gal>.wide{margin:0;min-width:0}
+.gallery img,.gal>.wide img{display:block;width:100%;max-width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px}
+.gal>.wide img{aspect-ratio:16/9}
+@media (max-width:760px){.gal{gap:10px}.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.gallery figure:last-child:nth-child(odd){grid-column:1/-1}.gallery figure:last-child:nth-child(odd) img{aspect-ratio:16/9}}
 .gallery figcaption{margin-top:8px;display:flex;justify-content:space-between;gap:10px}
 
 .map{position:relative;width:100%;max-width:100%;margin-top:6px}
@@ -307,27 +309,18 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
       <h2>Some recent pics</h2>
       <a class="mono" href="#home" data-view="home">← Back</a>
     </div>
-    <div class="gallery">
-      <figure><img src="img/rainbow.jpg" alt="Rainbow over the sea above a green headland" loading="lazy"></figure>
-      <figure><img src="img/funicular.jpg" alt="Funicular climbing a forested hill" loading="lazy"></figure>
-      <figure><img src="img/shallows.jpg" alt="Shallow water over sand" loading="lazy"></figure>
-      <figure><img src="img/street.jpg" alt="Sunlit old town street under storm clouds" loading="lazy"></figure>
-      <figure><img src="img/trail.jpg" alt="Hiker on a forest trail" loading="lazy"></figure>
-      <figure><img src="img/forest-road.jpg" alt="Autumn light on a forest road" loading="lazy"></figure>
-      <figure><img src="img/maple.jpg" alt="Maple leaves lit by low sun" loading="lazy"></figure>
-      <figure><img src="img/signs.jpg" alt="Street signs and cameras on a building corner" loading="lazy"></figure>
-      <figure><img src="img/highland.jpg" alt="Highland cattle grazing in fog" loading="lazy"></figure>
-      <figure><img src="img/lviv-street.jpg" alt="Two people walking past a yellow bus" loading="lazy"></figure>
-      <figure><img src="img/alley.jpg" alt="Graffiti dumpster in an alley" loading="lazy"></figure>
-      <figure><img src="img/snow.jpg" alt="Mountains with first snow" loading="lazy"></figure>
+    <div class="gal">
+      <h3 class="gal-h">Nature</h3>
+      <div class="gallery"><figure><img src="img/rainbow.jpg" alt="Rainbow over the sea above a green headland" loading="lazy"></figure><figure><img src="img/shallows.jpg" alt="Shallow water over sand" loading="lazy"></figure><figure><img src="img/funicular.jpg" alt="Funicular climbing a forested hill" loading="lazy"></figure></div>
+      <figure class="wide"><img src="img/lake.jpg" alt="Two hikers on boulders at a turquoise alpine lake" loading="lazy"></figure>
+      <div class="gallery"><figure><img src="img/trail.jpg" alt="Hiker on a forest trail" loading="lazy"></figure><figure><img src="img/maple.jpg" alt="Maple leaves lit by low sun" loading="lazy"></figure><figure><img src="img/forest-road.jpg" alt="Autumn light on a forest road" loading="lazy"></figure></div>
+      <div class="gallery"><figure><img src="img/highland.jpg" alt="Highland cattle grazing in fog" loading="lazy"></figure><figure><img src="img/snow.jpg" alt="Mountains with first snow" loading="lazy"></figure><figure><img src="img/romanesco.jpg" alt="Romanesco at a market" loading="lazy"></figure></div>
+      <h3 class="gal-h">Cities</h3>
+      <div class="gallery"><figure><img src="img/park.jpg" alt="Hot dog sign on a sunny park lawn" loading="lazy"></figure><figure><img src="img/wedding.jpg" alt="Beach wedding dinner under string lights" loading="lazy"></figure><figure><img src="img/street.jpg" alt="Sunlit old town street under storm clouds" loading="lazy"></figure></div>
       <figure class="wide"><img src="img/flags.jpg" alt="Sunset through trees by the water, flags in the wind" loading="lazy"></figure>
-      <figure><img src="img/park.jpg" alt="Hot dog sign on a sunny park lawn" loading="lazy"></figure>
-      <figure><img src="img/tower.jpg" alt="Curved tower rising behind a stone church" loading="lazy"></figure>
-      <figure><img src="img/romanesco.jpg" alt="Romanesco at a market" loading="lazy"></figure>
-      <figure><img src="img/painting.jpg" alt="Painting on a yellow wall, shot on film" loading="lazy"></figure>
-      <figure><img src="img/wedding.jpg" alt="Beach wedding dinner under string lights" loading="lazy"></figure>
-      <figure><img src="img/playground.jpg" alt="Child on a tricycle in a courtyard" loading="lazy"></figure>
+      <div class="gallery"><figure><img src="img/lviv-street.jpg" alt="Two people walking past a yellow bus" loading="lazy"></figure><figure><img src="img/signs.jpg" alt="Street signs and cameras on a building corner" loading="lazy"></figure><figure><img src="img/tower.jpg" alt="Curved tower rising behind a stone church" loading="lazy"></figure></div>
       <figure class="wide"><img src="img/opera.jpg" alt="Opera house dome behind tram wires" loading="lazy"></figure>
+      <div class="gallery"><figure><img src="img/playground.jpg" alt="Child on a tricycle in a courtyard" loading="lazy"></figure><figure><img src="img/painting.jpg" alt="Painting on a yellow wall, shot on film" loading="lazy"></figure><figure><img src="img/alley.jpg" alt="Graffiti dumpster in an alley" loading="lazy"></figure></div>
       <figure class="wide"><img src="img/rain.jpg" alt="Rainy street under hanging lights" loading="lazy"></figure>
     </div>
   </main>
