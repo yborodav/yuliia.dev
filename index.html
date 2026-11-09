@@ -369,7 +369,7 @@ function drawMap(){
   const c=document.getElementById('trail');
   if(!c||!matchMedia('(hover: hover)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   const ctx=c.getContext('2d');
-  const col='#d8f1ea';
+  const col='#f2d27e';
   let dpr=1,px=null,py=null,tx=0,ty=0,idle=0,run=false;
   function size(){dpr=Math.min(devicePixelRatio||1,2);c.width=innerWidth*dpr;c.height=innerHeight*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
   size();addEventListener('resize',size);
@@ -378,11 +378,11 @@ function drawMap(){
   const d=dab.getContext('2d'),gr=d.createRadialGradient(R,R,0,R,R,R);
   gr.addColorStop(0,col);gr.addColorStop(1,'transparent');d.fillStyle=gr;d.fillRect(0,0,R*2,R*2);
   function frame(){
-    ctx.globalCompositeOperation='destination-out';ctx.globalAlpha=.22;ctx.fillRect(0,0,innerWidth,innerHeight);
+    ctx.globalCompositeOperation='destination-out';ctx.globalAlpha=.5;ctx.fillRect(0,0,innerWidth,innerHeight);
     ctx.globalCompositeOperation='source-over';
     if(px===null){px=tx;py=ty}
     const nx=px+(tx-px)*.22,ny=py+(ty-py)*.22,dist=Math.hypot(nx-px,ny-py),n=Math.max(1,Math.ceil(dist/3));
-    ctx.globalAlpha=.05;
+    ctx.globalAlpha=.06;
     for(let i=1;i<=n;i++){const x=px+(nx-px)*i/n,y=py+(ny-py)*i/n;ctx.drawImage(dab,x-R,y-R)}
     px=nx;py=ny;
     if(dist<.3)idle++;else idle=0;
