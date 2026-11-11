@@ -273,12 +273,12 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
       <div class="soon-row">
         <img src="img/pettrack.svg" alt="" width="40" height="40">
         <div><b>PetTrack</b><span>Health tracker for pets with chronic conditions: meds and lab results over time.</span></div>
-        <span class="tag">In progress</span>
+        <a class="tag live" href="#contact" data-view="contact" data-beta="PetTrack">Request beta access</a>
       </div>
       <div class="soon-row">
         <img src="img/divelog.svg" alt="" width="40" height="40">
         <div><b>DiveLog</b><span>Logbook for scuba divers: licenses, dive sites and creatures seen.</span></div>
-        <span class="tag">In progress</span>
+        <a class="tag live" href="#contact" data-view="contact" data-beta="DiveLog">Request beta access</a>
       </div>
     </section>
   </main>
@@ -411,6 +411,12 @@ show();drawMap();
 // Contact form: sends through Web3Forms to the email tied to this key
 const W3F_KEY='13aeec21-9b7e-4d65-a796-48d6f2b5e2a4';
 const form=document.getElementById('cform'),st=document.getElementById('cf-status'),send=document.getElementById('cf-send');
+// "Request beta access" buttons pre-fill the contact form
+document.querySelectorAll('[data-beta]').forEach(a=>a.addEventListener('click',()=>{
+  const m=document.getElementById('cf-msg');
+  m.value=`Hi Yuliia, I'd like beta access to ${a.dataset.beta}. I use an iPhone.`;
+  setTimeout(()=>document.getElementById('cf-name').focus(),60);
+}));
 form.addEventListener('submit',async e=>{
   e.preventDefault();
   st.className='mono';
