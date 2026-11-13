@@ -70,9 +70,9 @@ nav ul a[aria-current="page"]{color:var(--acc);border-bottom:1.5px solid var(--s
 .pphoto img{display:block;width:100%;height:100%;object-fit:cover;object-position:62% 66%;transform:scale(1.18);transform-origin:62% 60%}
 .peace{position:absolute;right:5%;bottom:5%;width:22%;aspect-ratio:1;display:grid;place-items:center;border-radius:50%;background:var(--bg);border:2px solid var(--acc);font-size:clamp(28px,3.4vw,40px);line-height:1;transform:translateZ(30px) rotate(-12deg);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .portrait:hover .peace{transform:translateZ(30px) rotate(10deg) scale(1.06)}
-.band{width:100vw;margin-left:calc(50% - 50vw);overflow:hidden;border-block:1px solid var(--line);padding-block:18px;background:color-mix(in srgb,var(--bg2) 60%,transparent)}
-.band-in{display:flex;width:max-content;animation:band 32s linear infinite;font-size:clamp(22px,3vw,34px);font-weight:300;letter-spacing:-.02em;white-space:nowrap}
-.band-in span{padding-right:28px}.band i{font-style:normal;color:var(--acc);padding-inline:14px}
+.band{width:100vw;margin-left:calc(50% - 50vw);overflow:hidden;border-block:1px solid var(--line);padding-block:12px}
+.band-in{display:flex;width:max-content;animation:band 50s linear infinite;font-size:16px;font-weight:300;letter-spacing:.02em;color:var(--soft);white-space:nowrap}
+.band-in span{padding-right:22px}.band i{font-style:normal;color:var(--acc);padding-inline:18px}
 @keyframes band{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.band-in{animation:none}.pframe,.peace{transition:none}}
 
@@ -201,7 +201,7 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
       <figure class="portrait"><div class="pframe"><div class="pphoto"><img src="img/kayak.jpg" alt="Yuliia in a kayak below a waterfall in a fjord"></div><span class="peace" aria-hidden="true">✌️</span></div></figure>
     </section>
 
-    <div class="band" aria-hidden="true"><div class="band-in"><span>AI agents <i>✦</i> Backends <i>✦</i> APIs <i>✦</i> Secure auth <i>✦</i> LLM features <i>✦</i> MCP servers <i>✦</i> AWS <i>✦</i> iOS apps <i>✦</i></span><span>AI agents <i>✦</i> Backends <i>✦</i> APIs <i>✦</i> Secure auth <i>✦</i> LLM features <i>✦</i> MCP servers <i>✦</i> AWS <i>✦</i> iOS apps <i>✦</i></span></div></div>
+    <div class="band" aria-hidden="true"><div class="band-in"><span>AI agents <i>·</i> Backends <i>·</i> APIs <i>·</i> Secure auth <i>·</i> LLM features <i>·</i> MCP servers <i>·</i> AWS <i>·</i> iOS apps <i>·</i></span><span>AI agents <i>·</i> Backends <i>·</i> APIs <i>·</i> Secure auth <i>·</i> LLM features <i>·</i> MCP servers <i>·</i> AWS <i>·</i> iOS apps <i>·</i></span></div></div>
 
     <div class="rows">
       <section class="row grid">
