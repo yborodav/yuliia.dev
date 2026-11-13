@@ -60,9 +60,7 @@ nav ul a[aria-current="page"]{color:var(--acc);border-bottom:1.5px solid var(--s
 .portrait{grid-column:8 / 13;position:relative}
 .portrait::before{content:"";position:absolute;inset:-28px -32px -24px -26px;z-index:0;border-radius:46% 54% 42% 58%/55% 45% 55% 45%;
   background:radial-gradient(circle at var(--g1x,30%) var(--g1y,30%),var(--wash1),transparent 65%),radial-gradient(circle at var(--g2x,75%) var(--g2y,75%),var(--wash2),transparent 60%);
-  filter:blur(22px);opacity:.8;animation:drift 16s ease-in-out infinite alternate}
-@keyframes drift{0%{transform:rotate(0deg) scale(1)}50%{transform:rotate(12deg) scale(1.05)}100%{transform:rotate(-9deg) scale(.98)}}
-@media (prefers-reduced-motion:reduce){.portrait::before{animation:none}}
+  filter:blur(22px);opacity:.8}
 .portrait{perspective:900px}
 .pframe{position:relative;z-index:1;width:min(100%,400px);margin-inline:auto;aspect-ratio:1;border-radius:50%;padding:10px;
   border:2px solid var(--acc);transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .3s ease-out;transform-style:preserve-3d}
@@ -419,19 +417,7 @@ const vfmt=new Intl.DateTimeFormat('en-US',{timeZone:'America/Vancouver',hour:'n
 function tickTime(){if(vt)vt.textContent=vfmt.format(new Date()).replace(' AM',' am').replace(' PM',' pm')}
 tickTime();setInterval(tickTime,20000);
 
-// Color wash behind the portrait follows the pointer, eased
-(function(){
-  const port=document.querySelector('.portrait');
-  if(!port||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  let tx=0,ty=0,cx=0,cy=0,running=false;
-  function frame(){
-    cx+=(tx-cx)*.05;cy+=(ty-cy)*.05;
-    port.style.setProperty('--g1x',(30+cx*45)+'%');port.style.setProperty('--g1y',(30+cy*45)+'%');
-    port.style.setProperty('--g2x',(75-cx*45)+'%');port.style.setProperty('--g2y',(75-cy*45)+'%');
-    if(Math.abs(tx-cx)+Math.abs(ty-cy)>.002)requestAnimationFrame(frame);else running=false;
-  }
-  addEventListener('pointermove',e=>{tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5;if(!running){running=true;requestAnimationFrame(frame)}},{passive:true});
-})();
+
 
 const views={home:document.getElementById('view-home'),photography:document.getElementById('view-photography'),contact:document.getElementById('view-contact'),projects:document.getElementById('view-projects')};
 const navLinks=document.querySelectorAll('nav ul a[data-view]');
